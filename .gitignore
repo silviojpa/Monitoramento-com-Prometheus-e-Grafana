@@ -1,0 +1,14 @@
+# Arquivos de cache do Python
+__pycache__/
+*.pyc
+
+# Logs
+*.log
+
+# Arquivos de ambiente local
+.env
+
+# Arquivos de sistemas operacionais e IDEs
+.DS_Store
+.vscode/
+.idea/
