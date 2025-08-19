@@ -20,6 +20,7 @@ A seguir, a estrutura de diretórios do projeto. Cada arquivo desempenha uma fun
 ├── app/
 │   ├── app.py
 │   └── Dockerfile
+|   |__ requirements.txt
 ├── docker-compose.yml
 └── prometheus.yml
 ````
