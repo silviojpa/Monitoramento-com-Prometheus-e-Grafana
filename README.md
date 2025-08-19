@@ -23,7 +23,7 @@ A seguir, a estrutura de diretórios do projeto. Cada arquivo desempenha uma fun
 ├── docker-compose.yml
 └── prometheus.yml
 ````
-(app/app.py:) A aplicação web em Python que gera métricas.
+````app/app.py:```` A aplicação web em Python que gera métricas.
 
 app/Dockerfile: As instruções para criar a imagem Docker da nossa aplicação Python.
 
