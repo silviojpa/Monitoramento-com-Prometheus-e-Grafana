@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # sua aplicacao de teste
+  minha-aplicacao:
+    build: ./app
+    container_name: minha-aplicacao
+    ports:
+      - "8080:8080"
+    networks:
+      - monitoramento
+
+  # Adicionando o node-exporter para gerar metricas
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    command:
+      - '--path.rootfs=/host'
+    network_mode: host
+    restart: always
+
+  # Prometheus
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    depends_on:
+      - minha-aplicacao
+    networks:
+      - monitoramento
+    # Para se comunicar com o host, o Prometheus precisa de acesso à rede do host
+    # A linha abaixo permite isso, substituindo a necessidade de 'host.docker.internal'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  # Grafana
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    networks:
+      - monitoramento
+
+# Define as redes a serem usadas
+networks:
+  monitoramento:
+    driver: bridge
