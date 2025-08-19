@@ -1,4 +1,4 @@
-### Guia Completo: Projeto de Monitoramento com Prometheus e Grafana
+## Guia Completo: Projeto de Monitoramento com Prometheus e Grafana
 Este projeto é um exemplo prático de como configurar uma stack de monitoramento completa usando Docker, Prometheus e Grafana. O objetivo é monitorar uma pequena aplicação em Python (Flask) e o servidor hospedeiro, simulando um ambiente de produção real.
 
 ## Tecnologias Utilizadas
