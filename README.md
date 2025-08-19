@@ -25,11 +25,11 @@ A seguir, a estrutura de diretórios do projeto. Cada arquivo desempenha uma fun
 ````
 ````app/app.py:```` A aplicação web em Python que gera métricas.
 
-app/Dockerfile: As instruções para criar a imagem Docker da nossa aplicação Python.
+````app/Dockerfile:```` As instruções para criar a imagem Docker da nossa aplicação Python.
 
-docker-compose.yml: O arquivo de configuração principal que define e orquestra todos os serviços (Prometheus, Grafana, Node Exporter, aplicação).
+````docker-compose.yml:```` O arquivo de configuração principal que define e orquestra todos os serviços (Prometheus, Grafana, Node Exporter, aplicação).
 
-prometheus.yml: O arquivo de configuração do Prometheus, que especifica quais alvos ele deve "scrapear" (coletar métricas).
+````prometheus.yml:```` O arquivo de configuração do Prometheus, que especifica quais alvos ele deve "scrapear" (coletar métricas).
 
 # Pré-requisitos
 Para executar este projeto, você deve ter as seguintes ferramentas instaladas em sua máquina:
@@ -55,78 +55,78 @@ Este comando vai construir as imagens necessárias e iniciar todos os contêiner
 ````
 docker compose up -d --build
 ````
-up: Inicia os serviços definidos no docker-compose.yml.
+" up: " Inicia os serviços definidos no docker-compose.yml.
 
--d: Executa os contêineres em segundo plano (modo "detached").
+" -d: " Executa os contêineres em segundo plano (modo "detached").
 
---build: Força a reconstrução das imagens, garantindo que as alterações no código da aplicação sejam aplicadas.
+" --build: " Força a reconstrução das imagens, garantindo que as alterações no código da aplicação sejam aplicadas.
 
 Verifique os Contêineres
 Confirme se todos os contêineres estão rodando corretamente com o comando:
-
+````
 docker ps
+````
+Você deve ver minha-aplicacao, prometheus, grafana e node-exporter com o status ````Up````.
 
-Você deve ver minha-aplicacao, prometheus, grafana e node-exporter com o status Up.
-
-Acessando os Serviços
+## Acessando os Serviços
 Agora que os serviços estão rodando, você pode acessá-los no seu navegador:
 
-Aplicação de Teste: http://localhost:8080
+- Aplicação de Teste: http://localhost:8080
 
-Você verá a mensagem "Olá, mundo!".
+  - Você verá a mensagem "Olá, mundo!".
 
-Para ver as métricas, acesse: http://localhost:8080/metrics
+  - Para ver as métricas, acesse: http://localhost:8080/metrics
 
-Prometheus: http://localhost:9090
+- Prometheus: http://localhost:9090
 
-Verifique se os alvos estão "UP" em Status > Targets.
+  - Verifique se os alvos estão "UP" em Status > Targets.
 
-Grafana: http://localhost:3000
+- Grafana: http://localhost:3000
 
-O login padrão é admin e a senha é admin.
+  - O login padrão é ````admin```` e a senha é ````admin````.
 
-Configurando o Grafana
+## Configurando o Grafana
 Para visualizar os dados, você precisa conectar o Grafana ao Prometheus e importar um dashboard.
 
-Adicionar o Prometheus como Fonte de Dados
+1- Adicionar o Prometheus como Fonte de Dados
 
-No Grafana, clique no ícone de engrenagem.
+- No Grafana, clique no ícone de engrenagem.
 
-Selecione "Data Sources" e clique em "Add data source".
+- Selecione "Data Sources" e clique em "Add data source".
 
-Escolha "Prometheus".
+- Escolha "Prometheus".
 
-No campo URL, digite http://prometheus:9090.
+- No campo URL, digite http://prometheus:9090.
 
-Clique em "Save & Test".
+- Clique em "Save & Test".
 
-Importar Dashboard do Node Exporter
+2- Importar Dashboard do Node Exporter
 
-Clique no ícone de "Dashboards" (quatro quadrados) no menu lateral.
+- Clique no ícone de "Dashboards" (quatro quadrados) no menu lateral.
 
-Clique em "Import" e digite o ID 1860.
+- Clique em "Import" e digite o ID 1860.
 
-Clique em "Load" e, na próxima tela, selecione o Prometheus como fonte de dados.
+- Clique em "Load" e, na próxima tela, selecione o Prometheus como fonte de dados.
 
-Clique em "Import" para finalizar.
+- Clique em "Import" para finalizar.
 
-Criar um Dashboard para a sua Aplicação
+3- Criar um Dashboard para a sua Aplicação
 
-Clique em "Dashboards" > "New dashboard".
+- Clique em "Dashboards" > "New dashboard".
 
-Adicione um novo painel.
+- Adicione um novo painel.
 
-No campo "Query", digite app_requests_total para ver o contador de requisições ou app_request_processing_seconds para ver a latência.
+- No campo "Query", digite app_requests_total para ver o contador de requisições ou app_request_processing_seconds para ver a latência.
 
-Personalize o painel e salve-o.
+- Personalize o painel e salve-o.
 
-Como Enriquecer o Projeto
+# Como Enriquecer o Projeto
 Para tornar este projeto ainda mais robusto, você pode:
 
-Adicionar Mais Métricas: Inclua mais métricas personalizadas na sua aplicação, como número de erros, usuários ativos, ou o tamanho de filas de processamento.
+- Adicionar Mais Métricas: Inclua mais métricas personalizadas na sua aplicação, como número de erros, usuários ativos, ou o tamanho de filas de processamento.
 
-Configurar Alertas: Use o Prometheus Alertmanager para enviar notificações (via e-mail, Slack, etc.) quando uma métrica atingir um limite (ex: CPU > 80%).
+- Configurar Alertas: Use o Prometheus Alertmanager para enviar notificações (via e-mail, Slack, etc.) quando uma métrica atingir um limite (ex: CPU > 80%).
 
-Persistir os Dados: Configure volumes no docker-compose.yml para que os dados do Prometheus e do Grafana persistam mesmo se os contêineres forem removidos.
+- Persistir os Dados: Configure volumes no docker-compose.yml para que os dados do Prometheus e do Grafana persistam mesmo se os contêineres forem removidos.
 
 Este projeto serve como uma base sólida para qualquer necessidade de monitoramento. Sinta-se à vontade para explorar e modificar as configurações para atender aos seus próprios casos de uso.
