@@ -23,13 +23,13 @@ A seguir, a estrutura de diretórios do projeto. Cada arquivo desempenha uma fun
 ├── docker-compose.yml
 └── prometheus.yml
 ````
-"app/app.py:" A aplicação web em Python que gera métricas.
+'app/app.py:' A aplicação web em Python que gera métricas.
 
-"app/Dockerfile:" As instruções para criar a imagem Docker da nossa aplicação Python.
+app/Dockerfile: As instruções para criar a imagem Docker da nossa aplicação Python.
 
-"docker-compose.yml:" O arquivo de configuração principal que define e orquestra todos os serviços (Prometheus, Grafana, Node Exporter, aplicação).
+docker-compose.yml: O arquivo de configuração principal que define e orquestra todos os serviços (Prometheus, Grafana, Node Exporter, aplicação).
 
-"prometheus.yml:" O arquivo de configuração do Prometheus, que especifica quais alvos ele deve "scrapear" (coletar métricas).
+prometheus.yml: O arquivo de configuração do Prometheus, que especifica quais alvos ele deve "scrapear" (coletar métricas).
 
 # Pré-requisitos
 Para executar este projeto, você deve ter as seguintes ferramentas instaladas em sua máquina:
